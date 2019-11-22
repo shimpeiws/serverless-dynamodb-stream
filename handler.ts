@@ -27,7 +27,12 @@ export const dynamoTriggered: Handler = async (
   _callback: Callback
 ) => {
   console.info("event.Records", event.Records);
-  Promise.reject(new Error("fail"));
+  try {
+    throw new Error("fail");
+  } catch (error) {
+    console.info("error : ", error);
+  }
+  console.info("SUCCESS");
   return {
     statusCode: 200,
     body: JSON.stringify({
